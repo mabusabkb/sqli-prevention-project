@@ -1,0 +1,30 @@
+# Environment / secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+venv/
+.venv/
+
+# Databases
+*.db
+*.sqlite3
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# PHP
+SQLi_Injection/vendor/
+SQLi_Injection/composer.lock
+SQLi_Injection/.phpunit.result.cache

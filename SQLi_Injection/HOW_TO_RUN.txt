@@ -1,0 +1,127 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                  SQL INJECTION PREVENTION PROJECT                              ║
+║                         HOW TO RUN GUIDE                                       ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+STEP 1: INSTALL XAMPP
+═══════════════════════════════════════════════════════════════════════════════
+□ Download XAMPP from: https://www.apachefriends.org/
+□ Install to C:\xampp
+□ Start Apache and MySQL from XAMPP Control Panel
+
+STEP 2: SETUP DATABASE
+═══════════════════════════════════════════════════════════════════════════════
+□ Open browser: http://localhost/phpmyadmin
+□ Click "Import" tab
+□ Select file: Database/127_0_0_1.sql
+□ Click "Go" button
+□ Verify "user_db" database is created
+
+STEP 3: COPY PROJECT TO HTDOCS
+═══════════════════════════════════════════════════════════════════════════════
+□ Copy entire SQLi_Injection folder to: C:\xampp\htdocs\
+□ Final path should be: C:\xampp\htdocs\SQLi_Injection\
+
+STEP 4: INSTALL COMPOSER (For Testing)
+═══════════════════════════════════════════════════════════════════════════════
+□ Download from: https://getcomposer.org/
+□ Install Composer
+□ Open Command Prompt in project folder
+□ Run: composer install
+
+STEP 5: RUN PASSWORD MIGRATION (IMPORTANT!)
+═══════════════════════════════════════════════════════════════════════════════
+□ Open Command Prompt in project folder
+□ Run: php migrate_passwords.php
+□ Wait for "SUCCESS" message
+□ This converts plain text passwords to secure hashes
+
+STEP 6: OPEN APPLICATION
+═══════════════════════════════════════════════════════════════════════════════
+□ Open browser
+□ Go to: http://localhost/SQLi_Injection/index.html
+□ Login with:
+  - Username: admin
+  - Password: admin123
+
+STEP 7: TEST THE APPLICATION
+═══════════════════════════════════════════════════════════════════════════════
+□ Try logging in with valid credentials
+□ View all users (click "View Users")
+□ Add a new user (click "Add New User")
+□ Update a user (click "Update" button)
+□ Delete a user (click "Delete" button)
+
+STEP 8: RUN SECURITY TESTS (Optional)
+═══════════════════════════════════════════════════════════════════════════════
+□ Open Command Prompt in project folder
+□ Run: run_tests.bat
+□ All tests should PASS (green)
+□ This verifies SQL injection is blocked
+
+QUICK START MENU
+═══════════════════════════════════════════════════════════════════════════════
+Double-click: QUICKSTART.bat
+This provides an interactive menu for all operations.
+
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+Problem: "Database connection failed"
+Solution: 
+  - Check MySQL is running in XAMPP
+  - Verify database "user_db" exists
+  - Check connect.php has correct credentials
+
+Problem: "Login not working"
+Solution:
+  - Run: php migrate_passwords.php
+  - Clear browser cache
+  - Try username: admin, password: admin123
+
+Problem: "Page not found (404)"
+Solution:
+  - Verify project is in C:\xampp\htdocs\SQLi_Injection\
+  - Check Apache is running
+  - Use correct URL: http://localhost/SQLi_Injection/index.html
+
+Problem: "Tests failing"
+Solution:
+  - Run: composer install
+  - Verify database is set up
+  - Run migration script
+
+DEFAULT TEST USERS
+═══════════════════════════════════════════════════════════════════════════════
+Username: admin      | Password: admin123
+Username: shashank   | Password: shashank123
+
+SECURITY FEATURES IMPLEMENTED
+═══════════════════════════════════════════════════════════════════════════════
+✓ SQL Injection Prevention (Prepared Statements)
+✓ Password Hashing (Bcrypt)
+✓ Input Validation (Email, Length, Format)
+✓ Secure Error Handling (No sensitive data exposure)
+✓ XSS Prevention (Output escaping)
+
+PROJECT URLS
+═══════════════════════════════════════════════════════════════════════════════
+Login Page:     http://localhost/SQLi_Injection/index.html
+Admin Page:     http://localhost/SQLi_Injection/admin_page.html
+View Users:     http://localhost/SQLi_Injection/show_users.php
+Add User:       http://localhost/SQLi_Injection/new_users.html
+
+TESTING COMMANDS
+═══════════════════════════════════════════════════════════════════════════════
+Run all tests:              vendor\bin\phpunit
+Run security tests:         run_tests.bat
+Run functionality tests:    run_preservation_tests.bat
+
+NEED MORE HELP?
+═══════════════════════════════════════════════════════════════════════════════
+Read: SETUP_GUIDE.md (detailed instructions)
+Read: README.md (project overview)
+Read: tests/README.md (testing guide)
+
+═══════════════════════════════════════════════════════════════════════════════
+                    PROJECT IS READY TO RUN!
+═══════════════════════════════════════════════════════════════════════════════

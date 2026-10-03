@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- custom css file link -->
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <title>Add New User's</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <form action="new_user.php" method="post">
+            <h3>Create Account</h3>
+            <input type="text" name="username" required placeholder="Enter your name" autocomplete="off">
+            <input type="email" name="email" required placeholder="Enter your email">
+            <input type="password" name="password" required placeholder="Enter your password">
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <input type="submit" name="submit" value="Submit" class="form-btn">
+            <p>already have an account? <a href="index.html">login now</a></p>
+        </form>
+    </div>
+</body>
+</html>

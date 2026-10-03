@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Create User - Secure Flask Application{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    ➕ Create New User
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">
+                    Create a new user account. All inputs are validated and passwords are securely hashed with bcrypt.
+                </p>
+                
+                <form method="POST" action="{{ url_for('users.create_user') }}">
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            Username <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="username" 
+                               name="username" 
+                               value="{{ username if username else '' }}"
+                               placeholder="Enter username"
+                               maxlength="200"
+                               required>
+                        <div class="form-text">
+                            Maximum 200 characters. Required field.
+                        </div>
+                    </div>
+                    
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            Email <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" 
+                               class="form-control" 
+                               id="email" 
+                               name="email" 
+                               value="{{ email if email else '' }}"
+                               placeholder="Enter email address"
+                               maxlength="200"
+                               required>
+                        <div class="form-text">
+                            Valid email format required. Maximum 200 characters.
+                        </div>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            Password <span class="text-danger">*</span>
+                        </label>
+                        <input type="password" 
+                               class="form-control" 
+                               id="password" 
+                               name="password" 
+                               placeholder="Enter password"
+                               maxlength="200"
+                               required>
+                        <div class="form-text">
+                            Password will be hashed with bcrypt (cost factor 12). Maximum 200 characters.
+                        </div>
+                    </div>
+                    
+                    <!-- Gender Field -->
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">
+                            Gender <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" 
+                                id="gender" 
+                                name="gender" 
+                                required>
+                            <option value="">Select gender</option>
+                            <option value="Male" {% if gender == 'Male' %}selected{% endif %}>Male</option>
+                            <option value="Female" {% if gender == 'Female' %}selected{% endif %}>Female</option>
+                        </select>
+                        <div class="form-text">
+                            Select from allowed values: Male or Female.
+                        </div>
+                    </div>
+                    
+                    <!-- Security Notice -->
+                    <div class="alert alert-info" role="alert">
+                        <small>
+                            <strong>🔒 Security Features:</strong>
+                            <ul class="mb-0 mt-2">
+                                <li>All inputs validated before processing</li>
+                                <li>Password hashed with bcrypt (cost factor 12)</li>
+                                <li>SQLAlchemy ORM prevents SQL injection</li>
+                                <li>Duplicate username/email checking</li>
+                            </ul>
+                        </small>
+                    </div>
+                    
+                    <!-- Form Buttons -->
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('users.list_users') }}" class="btn btn-secondary">
+                            ← Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            ✓ Create User
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

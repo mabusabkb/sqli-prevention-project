@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Secure Flask Application{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Please enter your credentials to log in.</p>
+                
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Enter your username"
+                            required
+                            autofocus
+                        >
+                        <div class="form-text">
+                            Enter your registered username
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            class="form-control" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                        <div class="form-text">
+                            Enter your password
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Register Link -->
+                <div class="text-center mt-3">
+                    <p class="mb-0">
+                        Don't have an account? 
+                        <a href="{{ url_for('auth.register') }}">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Information -->
+        <div class="alert alert-info mt-3" role="alert">
+            <strong>🔒 Security Features:</strong>
+            <ul class="mb-0 mt-2">
+                <li>Bcrypt password hashing (cost factor 12)</li>
+                <li>Generic error messages prevent username enumeration</li>
+                <li>SQLAlchemy ORM prevents SQL injection</li>
+                <li>Secure session management</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

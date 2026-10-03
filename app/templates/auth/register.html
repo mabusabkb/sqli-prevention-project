@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Secure Flask Application{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-person-plus"></i> Register
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Create a new account to get started.</p>
+                
+                <form method="POST" action="{{ url_for('auth.register') }}">
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Choose a username"
+                            maxlength="200"
+                            required
+                            autofocus
+                        >
+                        <div class="form-text">
+                            Maximum 200 characters
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            maxlength="200"
+                            required
+                        >
+                        <div class="form-text">
+                            Valid email address (max 200 characters)
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                        <input 
+                            type="password" 
+                            class="form-control" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Choose a password"
+                            maxlength="200"
+                            required
+                        >
+                        <div class="form-text">
+                            Maximum 200 characters. Will be hashed with bcrypt.
+                        </div>
+                    </div>
+
+                    <!-- Gender Field -->
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
+                        <select 
+                            class="form-select" 
+                            id="gender" 
+                            name="gender" 
+                            required
+                        >
+                            <option value="" selected disabled>Select your gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div class="form-text">
+                            Select your gender
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">
+                            Register
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Login Link -->
+                <div class="text-center mt-3">
+                    <p class="mb-0">
+                        Already have an account? 
+                        <a href="{{ url_for('auth.login') }}">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Information -->
+        <div class="alert alert-info mt-3" role="alert">
+            <strong>🔒 Security Features:</strong>
+            <ul class="mb-0 mt-2">
+                <li>Comprehensive input validation</li>
+                <li>Bcrypt password hashing (cost factor 12)</li>
+                <li>SQLAlchemy ORM prevents SQL injection</li>
+                <li>Length constraints enforced (max 200 chars)</li>
+                <li>Email format validation</li>
+                <li>Gender whitelist validation</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{
+    "name": "sql-injection-security-fixes/tests",
+    "description": "Security vulnerability testing for SQL injection fixes",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "classmap": [
+            "tests/"
+        ]
+    }
+}
